@@ -1,0 +1,81 @@
+<!--
+ * @Author: Jason
+ * @Date: 2019-08-18 13:59:41
+ * @Github: https://github.com/JasonLaii
+ * @Description: 
+ * @LastEditTime: 2019-08-18 14:19:01
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+
+    <style>
+      body {
+        background: #eee;
+      }
+      div {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto;
+        border: 1px solid #333;
+        margin: 50px auto;
+        background: #fff;
+        position: relative;
+        box-sizing: border-box;
+      }
+      div::before{
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        border: 49px solid transparent;
+        border-left: 49px solid deeppink;
+        border-bottom: 49px solid deeppink;
+        animation: slash1 6s infinite ease;
+      }
+      div::after{
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        border: 48px solid transparent;
+        border-left: 48px solid #fff;
+        border-bottom: 48px solid #fff;
+        animation: slash2 6s  infinite ease;
+      }
+      @keyframes slash1{
+        0%{
+          transform: translate(-50px);
+        }
+        30%{
+          transform: translate(0);
+        }
+        100%{
+          transform: translate(0);
+        }
+      }
+      @keyframes slash2{
+        0%{
+          transform: translate(-100px)
+        }
+        30%{
+          transform: translate(-100px);
+        }
+        60%{
+          transform: translate(0);
+        }
+        100%{
+          transform: translate(0)
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div></div>
+  </body>
+</html>
