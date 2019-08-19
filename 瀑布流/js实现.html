@@ -1,0 +1,134 @@
+<!--
+ * @Author: Jason
+ * @Date: 2019-08-18 16:28:33
+ * @Github: https://github.com/JasonLaii
+ * @Description: 
+ * @LastEditTime: 2019-08-19 12:52:44
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+
+    <style>
+      body {
+        background: #ddd;
+      }
+      .container {
+        margin: 50px auto;
+        width: 1000px;
+        position: relative;
+      }
+      .container div {
+        position: absolute;
+        left: 0;
+        width: 200px;
+        text-align: center;
+        background: #333;
+        display: inline-block;
+        line-height: 200px;
+        font-size: 44px;
+        color: deeppink;
+        height: 200px;
+      }
+      .container div:nth-child(2n) {
+        height: 400px;
+        background: deepskyblue;
+      }
+      .container div:nth-child(3n + 1) {
+        height: 800px;
+        background: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+      <div>5</div>
+      <div>6</div>
+      <div>7</div>
+      <div>8</div>
+      <div>9</div>
+      <div>10</div>
+      <div>11</div>
+      <div>12</div>
+      <div>13</div>
+      <div>14</div>
+      <div>15</div>
+      <div>16</div>
+      <div>17</div>
+      <div>18</div>
+      <div>19</div>
+      <div>20</div>
+      <div>21</div>
+      <div>22</div>
+      <div>23</div>
+      <div>24</div>
+      <div>25</div>
+      <div>26</div>
+      <div>27</div>
+      <div>28</div>
+      <div>29</div>
+      <div>30</div>
+      <div>31</div>
+      <div>32</div>
+      <div>33</div>
+      <div>34</div>
+      <div>35</div>
+      <div>36</div>
+      <div>37</div>
+      <div>38</div>
+      <div>39</div>
+      <div>40</div>
+    </div>
+
+    <script>
+
+      var container = document.getElementsByClassName('container')[0];
+      var items = container.children;
+      var gap = 10
+      waterfall();
+      
+      function waterfall(){
+        let itemWidth = items[0].clientWidth;
+        let containerWidth = container.clientWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        let arr = [];
+        let columns = Math.floor(parseInt( containerWidth / (itemWidth + gap) ));
+
+        for(let i=0; i<items.length; i++){
+          //第一行
+          if(i < columns ){
+            
+            if ( i === 0 ) items[i].style.left = gap + 'px'; 
+            items[i].style.top = 0;
+            items[i].style.left = (itemWidth + gap) * i + 'px';
+            arr.push(items[i].offsetHeight);
+          }else{
+            //其他行
+            let min = arr[0];
+            let index = 0;
+            for(let j = 1; j<arr.length; j++ ){
+              if (min > arr[j]){
+                min = arr[j];
+                index = j;
+              }
+            }
+            items[i].style.top = arr[index] + gap + 'px';
+            items[i].style.left = items[index].offsetLeft + 'px';
+            
+            arr[index] = arr[index] + items[i].clientHeight + gap;
+            console.log(arr[index])
+          }
+        }
+      }
+
+    </script>
+  </body>
+</html>
